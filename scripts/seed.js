@@ -1,11 +1,11 @@
-import { Movie, Rating, User, db } from "../src/model.js";
-import movieData from "./data/movies.json" assert { type: "json" };
-import lodash from "lodash";
+import { Movie, Rating, User, db } from '../src/model.js';
+import movieData from './data/movies.json' assert { type: 'json' };
+import lodash from 'lodash';
 
-console.log("syncing DB...");
+console.log('syncing DB...');
 await db.sync({ force: true });
 
-console.log("Seeding database...");
+console.log('Seeding database...');
 
 console.log(movieData[0]);
 
@@ -58,7 +58,7 @@ const ratingsInDB = await Promise.all(
       return Rating.create({
         score: lodash.random(1, 5),
         userId: user.userId,
-        moveId: movie.movieId,
+        movieId: movie.movieId,
       });
     });
     return movieRatings;
@@ -66,4 +66,4 @@ const ratingsInDB = await Promise.all(
 );
 
 await db.close();
-console.log("Finished seeding database!");
+console.log('Finished seeding database!');
